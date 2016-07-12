@@ -8,9 +8,9 @@ export default Ember.Service.extend({
 
     this.set('timeZones', []);
 
-    this.addTimeZone(0);
-    this.addTimeZone(2);
-    this.addTimeZone(-3);
+    this.addTimeZone("0");
+    this.addTimeZone("+2");
+    this.addTimeZone("-3");
   },
 
   addTimeZone(utfDifference) {
