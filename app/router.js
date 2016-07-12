@@ -6,6 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('template');
+  this.route('matcher');
 });
 
 export default Router;
