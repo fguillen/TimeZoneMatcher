@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import TimeZone from 'time-zones-matcher/models/time-zone';
 
 export default Ember.Service.extend({
   timeZones: null,
@@ -14,8 +15,10 @@ export default Ember.Service.extend({
   },
 
   addTimeZone(utfDifference) {
-    this.get('timeZones').pushObject({
+    let timeZone = TimeZone.create({
       utfDifference: utfDifference
     });
+
+    this.get('timeZones').pushObject(timeZone);
   }
 });
