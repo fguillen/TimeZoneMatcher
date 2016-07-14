@@ -1,19 +1,8 @@
-<div class="row time-zone-controls">
-  <div class="col-sm-10">
-    <div class="progress">
-      <div class="progress-bar progress-bar-warning" style="width: 20%">
-        00-09
-      </div>
-      <div class="progress-bar progress-bar-success" style="width: 30%">
-        09-17
-      </div>
-      <div class="progress-bar progress-bar-warning" style="width: 50%">
-        17-00
-      </div>
-    </div>
-  </div>
+  {{#each timeZone.activeHoursWithSpan as |activeHour|}}
+    <td class={{if activeHour.active 'success' 'danger'}} {{action 'toggleActiveHour' activeHour}}>{{activeHour.hour}}</td>
+  {{/each}}
 
-  <div class="col-sm-2">
+  <td>
     {{#x-select value=timeZone.utfDifference class="form-control"}}
       {{#x-option value="-4"}}UTC -4{{/x-option}}
       {{#x-option value="-3"}}UTC -3{{/x-option}}
@@ -25,5 +14,5 @@
       {{#x-option value="+3"}}UTC +3{{/x-option}}
       {{#x-option value="+4"}}UTC +4{{/x-option}}
     {{/x-select}}
-  </div>
-</div>
+  </td>
+

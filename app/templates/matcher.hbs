@@ -11,9 +11,22 @@
   </div>
 
   <h1>list</h1>
-  {{#each db.timeZones as |timeZone|}}
-    {{time-zone timeZone=timeZone}}
-  {{/each}}
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      {{#each db.hoursList as |hour|}}
+        <th>{{hour}}</th>
+      {{/each}}
+      <th>Time Zone</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each db.timeZones as |timeZone|}}
+      {{time-zone timeZone=timeZone}}
+    {{/each}}
+  </tbody>
+</table>
 
   <hr />
 
