@@ -3,7 +3,7 @@
   {{/each}}
 
   <td>
-    {{#x-select value=timeZone.utfDifference class="form-control"}}
+    {{#x-select value=utfDifference class="form-control" action="updateUtfDifference"}}
       {{#x-option value="-4"}}UTC -4{{/x-option}}
       {{#x-option value="-3"}}UTC -3{{/x-option}}
       {{#x-option value="-2"}}UTC -2{{/x-option}}

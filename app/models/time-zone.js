@@ -28,7 +28,21 @@ export default Ember.Object.extend({
       Ember.Object.create({ 'hour': '23', 'active': false })
     ];
   }),
+
+  activeHoursChain: Ember.computed('activeHours.@each.active', function() {
+    return this.get('activeHours').mapBy('active').join();
+  }),
+
+  setActiveHour(hour, active){
+    return this.get('activeHours').findBy('hour', hour).set('active', active);
+  },
+
+  isActiveHour(hour){
+    return this.get('activeHours').findBy('hour', hour).get('active');
+  },
+
   activeHoursWithSpan: Ember.computed('utfDifference', function(){
+    console.log('XXX: activeHoursWithSpan calculation');
     let activeHoursSpaned = this.get('activeHours').slice(0);
 
     let arrayRotate =

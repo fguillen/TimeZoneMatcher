@@ -3,6 +3,7 @@ import TimeZone from 'time-zones-matcher/models/time-zone';
 
 export default Ember.Service.extend({
   timeZones: null,
+  timeZoneMatch: null,
   hoursList: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
 
   init() {
@@ -13,13 +14,32 @@ export default Ember.Service.extend({
     this.addTimeZone("0");
     this.addTimeZone("+2");
     this.addTimeZone("-3");
+
+    // The Total Match
+    let timeZoneMatch =
+      TimeZone.create({
+        utfDifference: '0'
+      });
+
+    this.set('timeZoneMatch', timeZoneMatch);
+
+    this.recalculateTimeZoneMatch();
   },
 
   addTimeZone(utfDifference) {
-    let timeZone = TimeZone.create({
-      utfDifference: utfDifference
-    });
+    let timeZone =
+      TimeZone.create({
+        utfDifference: utfDifference
+      });
 
     this.get('timeZones').pushObject(timeZone);
+  },
+
+  recalculateTimeZoneMatch() {
+    this.get('hoursList').forEach((hour, index) => {
+      let active = this.get('timeZones').every((timeZone) => timeZone.get('activeHoursWithSpan')[index].get('active'));
+      console.log('XXX: timeZoneMatch.setActiveHour', hour, active);
+      this.get('timeZoneMatch').setActiveHour(hour, active);
+    });
   }
 });
