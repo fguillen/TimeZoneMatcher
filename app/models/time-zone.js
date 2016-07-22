@@ -57,13 +57,6 @@ export default Model.extend({
     return this.get('activeHours').findBy('hour', hour).get('isAMatch');
   },
 
-  recalculateIsAMatchHours() {
-    this.get('db.hoursList').forEach((hour, index) => {
-      let isAMatch = this.get('db.timeZones').every((timeZone) => timeZone.get('activeHoursWithSpan')[index].get('active'));
-      this.setIsAMatchHour(hour, isAMatch);
-    });
-  },
-
   activeHoursWithSpan: Ember.computed('utfDifference', function(){
     console.log('XXX: activeHoursWithSpan calculation');
     let activeHoursSpaned = this.get('activeHours').slice(0);

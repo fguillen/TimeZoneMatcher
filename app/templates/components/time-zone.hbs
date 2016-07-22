@@ -1,5 +1,7 @@
   {{#each timeZone.activeHoursWithSpan as |activeHour|}}
-    <td class={{time-zone-td-class activeHour}} {{action 'toggleActiveHour' activeHour}}>{{activeHour.hour}}</td>
+    <td class={{time-zone-td-class activeHour.active activeHour.isAMatch}} {{action 'toggleActiveHour' activeHour}}>
+      {{activeHour.hour}}
+    </td>
   {{/each}}
 
   <td>
