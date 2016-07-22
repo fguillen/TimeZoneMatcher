@@ -13,21 +13,24 @@
   <h1>list</h1>
 
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      {{#each db.hoursList as |hour|}}
-        <th>{{hour}}</th>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        {{#each db.hoursList as |hour|}}
+          <th>{{hour}}</th>
+        {{/each}}
+        <th>Time Zone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each db.timeZones as |timeZone|}}
+        {{time-zone timeZone=timeZone}}
       {{/each}}
-      <th>Time Zone</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each db.timeZones as |timeZone|}}
-      {{time-zone timeZone=timeZone}}
-    {{/each}}
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+  {{add-time-zone}}
 
   <hr />
 
@@ -39,4 +42,3 @@
   </footer>
 
 </div> <!-- /container -->
-

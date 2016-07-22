@@ -13,7 +13,7 @@ export default Ember.Service.extend({
     this.addTimeZone("+2");
     this.addTimeZone("-3");
 
-    this.recalculateIsAMatchHours();
+
   },
 
   addTimeZone(utfDifference) {
@@ -23,20 +23,24 @@ export default Ember.Service.extend({
       });
 
     this.get('timeZones').pushObject(timeZone);
+    this.recalculateIsAMatchHours();
+  },
+
+  removeTimeZone(timeZone) {
+    this.get('timeZones').removeObject(timeZone);
+    this.recalculateIsAMatchHours();
   },
 
   recalculateIsAMatchHours() {
-    console.log("XXX: recalculateIsAMatchHours() : INI");
-    this.get('timeZones').forEach((timeZone) => {
-      let list = timeZone.get('activeHoursWithSpan').map((activeHour) => {
-        return activeHour.get('active') ? 1 : 0;
-      });
-      console.log(list);
-    });
+    // this.get('timeZones').forEach((timeZone) => {
+    //   let list = timeZone.get('activeHoursWithSpan').map((activeHour) => {
+    //     return activeHour.get('active') ? 1 : 0;
+    //   });
+    //   console.log(list);
+    // });
     this.get('hoursList').forEach((hour, index) => {
       let isAMatch = this.get('timeZones').every((timeZone) => timeZone.get('activeHoursWithSpan').objectAt(index).get('active'));
       this.get('timeZones').forEach((timeZone) => timeZone.get('activeHoursWithSpan').objectAt(index).set('isAMatch', isAMatch));
     });
-    console.log("XXX: recalculateIsAMatchHours() : END");
   },
 });

@@ -22,7 +22,12 @@ export default Ember.Component.extend({
       console.log('XXX: toggleActiveHour', activeHour);
       activeHour.toggleProperty('active');
       this.get('db').recalculateIsAMatchHours();
+    },
+
+    remove(){
+      this.get('db').removeTimeZone(this.get('timeZone'));
     }
+
   }
 
 });
