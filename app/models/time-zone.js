@@ -58,7 +58,6 @@ export default Model.extend({
   },
 
   activeHoursWithSpan: Ember.computed('utfDifference', function(){
-    console.log('XXX: activeHoursWithSpan calculation');
     let activeHoursSpaned = this.get('activeHours').slice(0);
 
     let arrayRotate =

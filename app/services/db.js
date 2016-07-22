@@ -10,10 +10,6 @@ export default Ember.Service.extend({
     this.set('timeZones', []);
 
     this.addTimeZone("0");
-    this.addTimeZone("+2");
-    this.addTimeZone("-3");
-
-
   },
 
   addTimeZone(utfDifference) {
@@ -32,12 +28,6 @@ export default Ember.Service.extend({
   },
 
   recalculateIsAMatchHours() {
-    // this.get('timeZones').forEach((timeZone) => {
-    //   let list = timeZone.get('activeHoursWithSpan').map((activeHour) => {
-    //     return activeHour.get('active') ? 1 : 0;
-    //   });
-    //   console.log(list);
-    // });
     this.get('hoursList').forEach((hour, index) => {
       let isAMatch = this.get('timeZones').every((timeZone) => timeZone.get('activeHoursWithSpan').objectAt(index).get('active'));
       this.get('timeZones').forEach((timeZone) => timeZone.get('activeHoursWithSpan').objectAt(index).set('isAMatch', isAMatch));
