@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import TimeZone from 'time-zones-matcher/models/time-zone';
 
 export default Ember.Service.extend({
   store: Ember.inject.service(),

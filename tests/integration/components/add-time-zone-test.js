@@ -11,14 +11,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{add-time-zone}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#add-time-zone}}
-      template block text
-    {{/add-time-zone}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('a#addTimeZoneLink').text().trim(), 'Add TimeZone');
 });
