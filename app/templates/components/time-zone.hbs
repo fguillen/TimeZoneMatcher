@@ -1,9 +1,15 @@
   {{#each timeZone.activeHoursWithSpan as |activeHour|}}
-    <td class={{if activeHour.active 'success' 'danger'}} {{action 'toggleActiveHour' activeHour}}>{{activeHour.hour}}</td>
+    <td class={{time-zone-td-class activeHour}} {{action 'toggleActiveHour' activeHour}}>{{activeHour.hour}}</td>
   {{/each}}
 
   <td>
     {{#x-select value=utfDifference class="form-control" action="updateUtfDifference"}}
+      {{#x-option value="-10"}}UTC -10{{/x-option}}
+      {{#x-option value="-9"}}UTC -9{{/x-option}}
+      {{#x-option value="-8"}}UTC -8{{/x-option}}
+      {{#x-option value="-7"}}UTC -7{{/x-option}}
+      {{#x-option value="-6"}}UTC -6{{/x-option}}
+      {{#x-option value="-5"}}UTC -5{{/x-option}}
       {{#x-option value="-4"}}UTC -4{{/x-option}}
       {{#x-option value="-3"}}UTC -3{{/x-option}}
       {{#x-option value="-2"}}UTC -2{{/x-option}}
@@ -13,6 +19,11 @@
       {{#x-option value="+2"}}UTC +2{{/x-option}}
       {{#x-option value="+3"}}UTC +3{{/x-option}}
       {{#x-option value="+4"}}UTC +4{{/x-option}}
+      {{#x-option value="+5"}}UTC +5{{/x-option}}
+      {{#x-option value="+6"}}UTC +6{{/x-option}}
+      {{#x-option value="+7"}}UTC +7{{/x-option}}
+      {{#x-option value="+8"}}UTC +8{{/x-option}}
+      {{#x-option value="+9"}}UTC +9{{/x-option}}
     {{/x-select}}
   </td>
 

@@ -15,11 +15,14 @@ export default Ember.Component.extend({
   actions: {
     updateUtfDifference() {
       this.set('timeZone.utfDifference', this.get('utfDifference'));
+      this.get('db').recalculateIsAMatchHours();
       this.get('db').recalculateTimeZoneMatch();
     },
 
     toggleActiveHour(activeHour) {
+      console.log('XXX: toggleActiveHour', activeHour);
       activeHour.toggleProperty('active');
+      this.get('db').recalculateIsAMatchHours();
       this.get('db').recalculateTimeZoneMatch();
     }
   }

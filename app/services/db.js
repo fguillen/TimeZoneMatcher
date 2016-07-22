@@ -2,13 +2,12 @@ import Ember from 'ember';
 import TimeZone from 'time-zones-matcher/models/time-zone';
 
 export default Ember.Service.extend({
+  store: Ember.inject.service(),
   timeZones: null,
   timeZoneMatch: null,
   hoursList: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
 
-  init() {
-    this._super(...arguments);
-
+  initTimeZones() {
     this.set('timeZones', []);
 
     this.addTimeZone("0");
@@ -17,22 +16,26 @@ export default Ember.Service.extend({
 
     // The Total Match
     let timeZoneMatch =
-      TimeZone.create({
+      this.get('store').createRecord('timeZone', {
         utfDifference: '0'
       });
 
     this.set('timeZoneMatch', timeZoneMatch);
 
-    this.recalculateTimeZoneMatch();
+    this.recalculateIsAMatchHours();
   },
 
   addTimeZone(utfDifference) {
     let timeZone =
-      TimeZone.create({
+      this.get('store').createRecord('timeZone', {
         utfDifference: utfDifference
       });
 
     this.get('timeZones').pushObject(timeZone);
+  },
+
+  recalculateIsAMatchHours() {
+    this.get('timeZones').forEach((timeZone) => timeZone.recalculateIsAMatchHours());
   },
 
   recalculateTimeZoneMatch() {
